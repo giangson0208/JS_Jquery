@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">		
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="CSS.css">
+<script> 
+	//các thuộc tính css trong hàm animate phải viết theo kiểu lạc đà VD : fontSize
+	// $(selector).action()
+	// Gọi jQuery
+	// Selector: HTML Element .class #id 
+	// Action: Hành động cho HTML Element được chọn
+	//slideToggle,fadeToggle
+$(document).ready(function(){
+	  $("#btn1").click(function(){
+		    $("#img1").animate({
+		      left: '250px',
+		      opacity: '0.5',
+		      height: '+=150px',
+		      width: '+=150px'
+		    });
+	  });
+	  $("#btn2").click(function(){
+	  		$("#img2").animate({
+	    	 height: 'toggle'
+  		    });
+	  }); 
+	  $("#btn3").click(function(){
+	  		var img3 = $('#img3')
+	  		img3.animate({height: '300px', opacity: '0.4'}, "slow");
+			img3.animate({width: '300px', opacity: '0.8'}, "slow");
+			img3.animate({height: '100px', opacity: '0.4'}, "slow");
+			img3.animate({width: '100px', opacity: '0.8'}, "slow");
+	  }); 
+	  $("#btn4").click(function(){
+	  		alert("value : "+ $("#test").val()); //get
+	  		var set = $("#test").val(123);	//set
+	  		//origValue à giá trị cũ || text html val đều get set giống nhau text,html thì dùng origText
+	  		$("#test").val(function(i, origValue){	
+   			   return origValue + 1234;
+ 			});
+	  		alert("value : "+ $("#test").text());
+	  		alert("value : "+ $("#test").html());
+	  		alert($("#test").attr("type")); //attr lấy giá trị thuộc tính trường html
+	  		$("a").attr({
+	  			"href" : "https://www.facebook.com",
+	  			"title" : "facebook"
+	  		});
+	  		$("a").attr("href",function(i, origValue){	
+   			   return origValue + "login/identify/?ctx=recover&ars=royal_blue_bar";
+ 			});
+	  });
+	  $("#btn5").click(function(){
+	  	$("button").toggleClass("btn1 btn2");//có thể addClass hoặc removeClassnhiều class vào cùng lúc
+	  	$("#btn5").css({"background-color": "yellow", "font-size": "200%"});//add css
+	  	$("a").removeAttr("href");
+	  });
+});
+</script> 
+</head>
+<body>
+
+<button id="btn1">Start Animation</button>
+<button id="btn2">Start Animation Hide</button>
+<button id="btn3">Start Animation Hide</button>
+<button id="btn5">Add class</button>
+<div class="row" style="height: 100px;">
+	<div id="img1" style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+	</div>
+<div class="row" style="height: 100px;">
+	<div id="img2" style="background:blue;height:100px;width:100px;position:absolute;"></div>
+</div>
+<div class="row" style="height: 100px;">
+	<div id="img3" style="background:red;height:100px;width:100px;position:absolute;"></div>
+</div>
+<div>
+	<input type="text" id="test" value="Mickey Mouse"><button id="btn4">Show value</button>
+</div>
+<div>
+	<a href="https://www.facebook.com">facebook.com</a>
+</div>
+
+</body>
+</html>

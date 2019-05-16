@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		// Object
+		var person = new Object();
+		person.name = "Giang Son";
+		person.age = 50;
+		var person2 ={
+			fullname:function(city,country){
+				return this.fname + " " + this.lname+" , "+city+"<br />"; 
+				//Trong một định nghĩa hàm, thì đề cập đến "chủ sở hữu" của hàm ở đây là person2
+				//Trong một phương thức, thì đề cập đến đối tượng chủ sở hữu .
+				//Một mình, thì đề cập đến các đối tượng toàn cầu .
+				//Trong một chức năng, thisđề cập đến các đối tượng toàn cầu .
+			}
+		}
+		document.write(person.name+" "+person.age+"<br />");
+		var person3 = {
+			fname : "Quynh",
+			lname : "Trang"
+		}
+		var person4 = {
+			fname : "Hai",
+			lname : "Yen"
+		}
+		document.write(person2.fullname.call(person3,"Ha Noi")); //call
+		document.write(person2.fullname.call(person4,["Nha Trang"])); //apply
+
+		
+		
+		function Student(){ //class
+			this.name = "unknown";	
+			this.diemtoan = "unknown";
+			this.diemvan="unknown";
+			this.diemtrungbinh = function(){
+				return (this.diemtoan+this.diemvan)/2;
+			}
+		}
+		var std = new Student();	//đây là thể hiện của lớp Student
+		std.name="Hong Hai";
+		std.diemtoan = 8; 	
+		std.diemvan = 7; 	
+		document.write(std.name + " " + std.diemtoan+std.diemvan+"<br/>");
+		document.write(std.name + " " + std.diemtrungbinh()+"<br/>");
+
+		function Employee(name,age,job){ //class có truyền các tham số
+			this.name = name;		//this ở đây địa diện cho 1 đối tượng cụ thể employee,employee2
+			this.age = age;
+			this.job = job;	
+		};
+		Employee.prototype.fullname=function(){	//prototype Thuộc tính JavaScript cho phép bạn thêm các thuộc tính mới cho các hàm tạo đối tượng
+			return this.name + " " +this.job;
+		}
+		var employee = new Employee("son",22,"student"); //truyền tham số
+		var employee2 = new Employee("nguyennhan",25,"student"); //truyền tham số
+		document.write(employee.name +" "+ employee.age+"<br />");
+		document.write(employee2.name +" "+ employee2.age+"<br />");
+		document.write(employee.fullname()+"<br />");
+
+		for(prop in person){	//prop là tên thuộc tính trong function
+			document.write(prop+ " : " + person[[prop]]+"<br />");
+		}
+
+		//hàm trả về 1 hàm ( hàm to bao chưa nhiều hàm con bên trong)
+		function calculate(){
+			function add(a,b){
+				return a+b;
+			}
+			return add;
+		}
+		var total = calculate();
+		document.write(total(5,6)+"<br />");
+		//gán hàm vào 1 biến
+		var add = function (a,b){ //khi gán vào 1 biến thì có thể k cần dùng tới tên function đó nữa
+			return a+b;
+		}
+		var result = add(10,6);
+		document.write(result+"<br />");
+	
+        // Variable Arguments
+		function Sum(){
+			var total = 0;
+			for(var i=0;i<arguments.length;i++){ //arguments là mảng chứa các tham số truyền vào
+				total += arguments[i];
+			}
+			return total;
+		}
+		var sum = Sum(1,2,3);
+		document.write(sum+"<br/>");
+
+		var myVar =100;
+		function WhoIsThis(){
+			var myVar=200;
+			document.write(myVar);	//200
+			document.write(this.myVar);	//100 this ở đây sẽ chỉ tới biến toàn cục bên ngoài function
+		}
+		WhoIsThis();
+	</script>
+</head>
+<body>
+
+</body>
+</html>
